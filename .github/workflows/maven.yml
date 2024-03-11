@@ -1,10 +1,6 @@
 name: 020-manual-input-workflo!!!!!!
 
 on:
-  push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
   workflow_dispatch:
     inputs:
       name:
