@@ -1,4 +1,4 @@
-name: maven_two
+name: Auto
 
 on:
   push:

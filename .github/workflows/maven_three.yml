@@ -1,4 +1,4 @@
-name: maven_two
+name: Manual
 
 on:
   workflow_dispatch:
