@@ -1,16 +1,34 @@
-name: Manual
+name: SWLBOSS-87
 
 on:
   workflow_dispatch:
     inputs:
-      name:
-        description: 'Person to greet'
-        default: 'World'
+      environment:
+        description: 'Environment to deploy to'
         required: true
+        default: 'test'
+        type: choice
+        options:
+          - test
+          - integration
 
 jobs:
-  greet:
+  hello:
     runs-on: ubuntu-latest
     steps:
-    - name: Send greeting
-      run: echo "Hello ${{github.event.inputs.name}}!!!"
+      - name: Send greeting
+        run: echo "Hello ${{github.event.inputs.environment}}"
+
+  test:
+    if: ${{ github.event.inputs.environment == 'test' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send greeting test
+        run: echo "Hello Test!"
+
+  integration:
+    if: ${{ github.event.inputs.environment == 'integration' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send greeting int
+        run: echo "Hello Integration!"
