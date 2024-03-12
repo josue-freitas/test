@@ -1,4 +1,4 @@
-name: Manual
+name: SWLBOSS-87
 
 on:
   workflow_dispatch:
@@ -6,37 +6,29 @@ on:
       environment:
         description: 'Environment to deploy to'
         required: true
-        default: 'production'
+        default: 'test'
         type: choice
-        options: 
-          - dev
-          - int
-          - prod
+        options:
+          - test
+          - integration
 
 jobs:
-  greet:
+  hello:
     runs-on: ubuntu-latest
     steps:
-    - name: Send greeting
-      run: echo "Hello ${{github.event.inputs.environment}}"
+      - name: Send greeting
+        run: echo "Hello ${{github.event.inputs.environment}}"
 
-  dev:
-    if: ${{ github.event.inputs.environment == 'dev' }}
+  test:
+    if: ${{ github.event.inputs.environment == 'test' }}
     runs-on: ubuntu-latest
     steps:
-    - name: Send greeting
-      run: echo "Hello DEV!!!"
-  
-  int:
-    if: ${{ github.event.inputs.environment == 'int' }}
+      - name: Send greeting test
+        run: echo "Hello Test!"
+
+  integration:
+    if: ${{ github.event.inputs.environment == 'integration' }}
     runs-on: ubuntu-latest
     steps:
-    - name: Send greeting
-      run: echo "Hello INT!!!"
-  
-  prod:
-    if: ${{ github.event.inputs.environment == 'prod' }}
-    runs-on: ubuntu-latest
-    steps:
-    - name: Send greeting
-      run: echo "Hello PROD!!!"
+      - name: Send greeting int
+        run: echo "Hello Integration!"
