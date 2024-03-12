@@ -16,21 +16,21 @@ jobs:
       run: echo "Hello ${{github.event.inputs.environment}}"
 
   dev:
-    if: ${{github.event.inputs.environment}} == dev
+    if: ${{ github.event.inputs.environment == 'dev' }}
     runs-on: ubuntu-latest
     steps:
     - name: Send greeting
       run: echo "Hello DEV!!!"
   
   int:
-    if: ${{github.event.inputs.environment}} == int
+    if: ${{ github.event.inputs.environment == 'int' }}
     runs-on: ubuntu-latest
     steps:
     - name: Send greeting
       run: echo "Hello INT!!!"
   
   prod:
-    if: ${{github.event.inputs.environment}} == prod
+    if: ${{ github.event.inputs.environment == 'prod' }}
     runs-on: ubuntu-latest
     steps:
     - name: Send greeting
